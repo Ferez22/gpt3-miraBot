@@ -1,5 +1,5 @@
 from flask import Flask, request, session
-from twilio.twiml.messaging_response import messaging_response
+from twilio.twiml.messaging_response import MessagingResponse
 from miraBot import ask, append_interaction_to_chat_log
 
 app = Flask(__name__)
@@ -8,8 +8,8 @@ app.config['SECRET_KEY'] = '89djhf9lhkd93'
 
 @app.route('/miraBot', methos=["POST"])
 def mira():
-    incoming_msg = resquest.values['Body']
-    chast_log = session.get('chat_log')
+    incoming_msg = request.values['Body']
+    chat_log = session.get('chat_log')
     answer = ask(incoming_msg, chat_log)
     session['chat_log'] = append_interaction_to_chat_log(incoming_msg, answer, 
                                                         chat_log)
