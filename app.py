@@ -1,12 +1,13 @@
 from flask import Flask, request, session
 from twilio.twiml.messaging_response import MessagingResponse
 from miraBot import ask, append_interaction_to_chat_log
+#!/Users/ferez/Documents/GitHub/gpt3-miraBot/venv/bin/python3
 
 app = Flask(__name__)
 # if conversation becomes weird, change secret key
 app.config['SECRET_KEY'] = '89djhf9lhkd93'
 
-@app.route('/miraBot', methos=["POST"])
+@app.route('/miraBot', methods=["POST"])
 def mira():
     incoming_msg = request.values['Body']
     chat_log = session.get('chat_log')
